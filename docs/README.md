@@ -78,6 +78,16 @@ guess: the decision is marked as degraded and the dashboard asks the operator
 to choose the speed. The air-quality location is Vienna and the data is
 current, so it does not match the historical hour being replayed.
 
+### Using the GUI
+
+The GUI combines the operator's view of the current speed-limit decision with
+controls for simulating different situations. The live replay displays
+historical sensor readings alongside the proposed speed, decision explanation,
+and history. Choose a scenario from the dropdown to pause the replay and test a
+specific flow, such as night driving, black ice, high air pollution, or an
+invalid sensor reading. The dashboard shows how the system responds, and lets
+the operator set or clear a manual speed override.
+
 ## Canonical Component Table
 
 A means application-domain logic; T means technical infrastructure.
