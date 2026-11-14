@@ -1,0 +1,11 @@
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+__pycache__/
+.venv/
+*.py[cod]
+.DS_Store
+._*
+logs/
+class_material

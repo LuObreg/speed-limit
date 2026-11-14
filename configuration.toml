@@ -1,0 +1,83 @@
+# Tunable business rules and technical settings.
+
+# Business rules (Type A)
+[business.weather]
+# SPEC1: dark below; SPEC2: black ice above this water level and below 0 C.
+darkness_illuminance_below_millilux = 500.0
+black_ice_water_level_above_um = 1000.0
+black_ice_temperature_below_c = 0.0
+# SPEC4 target; achieving it is not established by the current model.
+target_near_accidents_per_hour = 1.0
+
+[business.speed]
+default_kmh = 80
+min_kmh = 20
+max_kmh = 80
+
+[business.air_quality]
+# Unvalidated MVP assumptions; confirm the scale and policy with stakeholders.
+high_pollution_threshold = 60.0
+min_reduction_kmh = 10
+max_reduction_kmh = 20
+
+[business.danger_index]
+# Total index combines darkness and black-ice scores.
+darkness_weight = 1.0
+black_ice_weight = 1.0
+freezing_saturation_c = 10.0
+
+[business.data]
+# The event policy can be narrowed to ["skidding"] for the course change request.
+near_accident_types = ["skidding", "close_cars", "close_guardrails"]
+# Project assumes IDs 15/18 are temperature (C) and 16 is traffic; verify with data owner.
+temperature_units_by_sensor = { "15" = "C", "18" = "C" }
+
+[business.sensor_bounds]
+# Temperature in C, water level in um, and illuminance in lux.
+temperature_c_min = -30.0
+temperature_c_max = 70.0
+water_level_um_min = 0.0
+water_level_um_max = 10000.0
+illuminance_lux_min = 0.0
+illuminance_lux_max = 1000000.0
+
+# Technical settings (Type T)
+[technical.paths]
+data_dir = "data"
+model_dir = "models"
+log_dir = "logs"
+sensor_readings_file = "Case_Study_Speed_Limit_SensorReadingsYearN_V100.csv"
+accidents_file = "Case_Study_Speed_Limit_AccidentsYearN_V100.csv"
+sensor_readings_year_plus_one_file = "Case_Study_Speed_Limit_SensorReadingsYearNPlus1_V100.csv"
+accidents_year_plus_one_file = "AccidentsYearNPlus1_V100.csv"
+
+[technical.nn]
+hidden_layer_sizes = [32, 16]
+learning_rate = 0.001
+max_epochs = 300
+# Early stopping uses validation data; test data is reserved for final evaluation.
+patience = 20
+validation_fraction = 0.2
+test_fraction = 0.2
+random_seed = 42
+min_training_rows = 100
+
+[technical.llm]
+ollama_url = "http://localhost:11434"
+ollama_model = "llama3.2:3b"
+timeout_s = 30.0
+
+[technical.simulator]
+seconds_per_sim_hour = 2.0
+
+[technical.air_quality_api]
+base_url = "https://air-quality-api.open-meteo.com/v1/air-quality"
+location_name = "Vienna"
+latitude = 48.2082
+longitude = 16.3738
+timezone = "Europe/Vienna"
+timeout_s = 5.0
+cache_ttl_s = 600
+
+[technical.runtime]
+ui = "gui"

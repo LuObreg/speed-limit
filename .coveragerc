@@ -1,0 +1,9 @@
+[run]
+branch = True
+source =
+    settings
+    source
+
+[report]
+fail_under = 100
+show_missing = True

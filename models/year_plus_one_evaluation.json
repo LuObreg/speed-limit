@@ -1,0 +1,19 @@
+{
+  "n_hours": 744,
+  "n_triggered_hours": 389,
+  "observed_triggered_mean": 1.0308483290488433,
+  "triggered_ci95": [
+    0.9331619537275064,
+    1.1337403598971723
+  ],
+  "predicted_triggered_mean": 1.2364803413487158,
+  "observed_all_hours_mean": 1.1008064516129032,
+  "predicted_all_hours_mean": 1.3040028332340383,
+  "mae": 0.8740323259184716,
+  "rmse": 1.0653917722834285,
+  "baseline_mae": 0.873149621486089,
+  "evaluation_period": "Year N+1; model trained on Year N",
+  "causal_safety_claim": false,
+  "limitation": "Observational historical data estimates association, not the counterfactual effect of applying a candidate speed.",
+  "uncertainty_limitation": "The percentile bootstrap resamples individual triggered hours and does not account for temporal autocorrelation."
+}
